@@ -37,13 +37,15 @@ const createVideoGameHanldrer = async(req , res)=>{
             platforms,
             background_image,
             released,
-            rating,} = req.body
+            rating,
+            genres,} = req.body
         const response = await createVideoController(name,
             description,
             platforms,
             background_image,
             released,
-            rating,);
+            rating,
+            genres,);
             res.status(200).json(response);
     } catch (error) {
         res.status(400).json({error:error.message})
