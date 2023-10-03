@@ -11,12 +11,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-          <Route path={"*"} component={Navbar}/>
+        <Route path={["/create", "/home", "/detail/:id"]} component={Navbar} />
         <Switch>
-          <Route exact path={"/"} component={Landing}/>
-          <Route path={"/create"} component ={Create}/>
-          <Route path={"/home"} component = {Home}/>
-          <Route path={"detail:id"} component = {Detail}/>
+          <Route exact path="/" component={Landing} />
+          <Route path="/create" component={Create} />
+          <Route path="/home" component={Home} />
+          <Route path="/detail/:id" component={Detail} />
         </Switch>
       </BrowserRouter>
     </div>
@@ -24,3 +24,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+

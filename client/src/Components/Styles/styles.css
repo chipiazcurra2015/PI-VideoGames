@@ -1,0 +1,88 @@
+.navbar-cont{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: blue;
+    border: solid 2px white;
+    box-shadow: 0px 10px 5px white;
+}
+
+.navbar-cont-img img{
+    width: 9rem;
+}
+.navbar-cont-links{
+   display: flex;
+   justify-content: space-between;
+   width: 15rem; 
+}
+.navbar-links{
+    color: white;
+}
+
+
+.card-cont{
+background-color: rgb(22, 22, 187);
+border: 2px white;
+border-radius: 5px;
+width: 15rem;
+margin: 15px;
+padding: 5px;
+}
+
+
+
+.cards-cont{
+    margin-top: 5rem;
+    display: flex;
+    
+}
+
+.home-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente el contenido */
+    background-image: url('https://media.vandal.net/i/1280x720/9-2023/20239278512665_1.jpg'); /* Reemplaza 'ruta-de-tu-imagen.jpg' con la URL de tu imagen de fondo */
+    background-size: cover; /* Cubre todo el área del elemento */
+    background-position: center; /* Centra la imagen en el elemento */
+    height: 100vh; /* Establece la altura del elemento al 100% de la altura de la ventana */
+  }
+
+  .landing-cont {
+    background-image: url('https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/07/20/16583311679833.jpg'); /* Reemplaza 'ruta-de-tu-imagen.jpg' con la URL de tu imagen de fondo */
+    background-size: cover; /* Cubre todo el área del elemento */
+    background-position: center; /* Centra la imagen en el elemento */
+    height: 100vh; /* Establece la altura del elemento al 100% de la altura de la ventana */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Cambia el color del texto según tus preferencias */
+    font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
+    text-align: center;
+  }
+ 
+
+  .form-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images7.alphacoders.com/932/932702.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding: 20px; /* Espacio adicional alrededor del formulario */
+  }
+  
+  .form {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para el formulario */
+    padding: 40px;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra alrededor del formulario */
+    max-width: 400px; /* Ancho máximo del formulario */
+    width: 100%; /* Ancho completo del contenedor */
+    text-align: center;
+  }
+  
