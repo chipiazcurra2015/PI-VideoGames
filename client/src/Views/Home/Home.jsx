@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Cards from '../../Components/Cards/Cards'
 import "../../Components/Styles/styles.css"
+import { useDispatch, useSelector } from 'react-redux'
+import { getVideoGame } from '../../Redux/Action/action'
 
 const Home = () => {
 
-  const arr = [{name:"Lucas",poder:"codear css", aliado:"tu hermana"},
-  {name:"Lionel",poder:"codear java", aliado:"batman"},
-  {name:"Julian",poder:"codear C++", aliado:"robin"},
-  {name:"Majo",poder:"codear javaScript", aliado:"judas"},
-  {name:"Alma",poder:"irme de joda", aliado:"hombre araña"}]
+    const dispatch= useDispatch()
+    const allVideoGame = useSelector(state => state.allVideoGame);
 
+    useEffect(()=>{
+      dispatch(getVideoGame())
+    },[])
+    
   return (
     <div className='home-cont'>
-      <Cards info={arr}> </Cards>
+      <Cards info={allVideoGame}> </Cards>
     </div>
+
   )
 }
 

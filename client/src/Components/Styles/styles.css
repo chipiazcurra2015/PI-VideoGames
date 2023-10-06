@@ -1,10 +1,10 @@
-.navbar-cont{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: blue;
-    border: solid 2px white;
-    box-shadow: 0px 10px 5px white;
+.navbar-cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 255, 0.5); /* Color azul con transparencia */
+  border: solid 2px white;
+  box-shadow: 0px 10px 5px white;
 }
 
 .navbar-cont-img img{
@@ -16,36 +16,64 @@
    width: 15rem; 
 }
 .navbar-links{
-    color: white;
+    color: blueviolet;
 }
 
 
-.card-cont{
-background-color: rgb(22, 22, 187);
-border: 2px white;
-border-radius: 5px;
-width: 15rem;
-margin: 15px;
-padding: 5px;
+
+
+
+.card-cont {
+  width: 250px;
+  height: 400px;
+  margin: 2rem;
+  background-color: #0d248a;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
 }
 
-
+.card-cont:hover {
+  transform: scale(1.05); /* Efecto de zoom al pasar el ratón por encima */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Sombra con luces */
+}
+.card-imagen img{
+  width: 20rem;
+}
 
 .cards-cont{
-    margin-top: 5rem;
-    display: flex;
-    
-}
-
-.home-cont {
+    margin-top: 10rem;
     display: flex;
     justify-content: center;
-    align-items: center; /* Centra verticalmente el contenido */
-    background-image: url('https://media.vandal.net/i/1280x720/9-2023/20239278512665_1.jpg'); /* Reemplaza 'ruta-de-tu-imagen.jpg' con la URL de tu imagen de fondo */
-    background-size: cover; /* Cubre todo el área del elemento */
-    background-position: center; /* Centra la imagen en el elemento */
-    height: 100vh; /* Establece la altura del elemento al 100% de la altura de la ventana */
-  }
+    flex-wrap: wrap;
+    margin-top: 180rem;
+}
+.card-cont-tittle{
+  color: blueviolet;
+}
+
+
+
+
+
+
+
+
+
+.home-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://media.vandal.net/i/1280x720/9-2023/20239278512665_1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: calc(100vh + 100px); /* Añade espacio adicional en la parte inferior */
+}
+
+
+
 
   .landing-cont {
     background-image: url('https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/07/20/16583311679833.jpg'); /* Reemplaza 'ruta-de-tu-imagen.jpg' con la URL de tu imagen de fondo */
@@ -58,13 +86,17 @@ padding: 5px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white; /* Cambia el color del texto según tus preferencias */
+    color: rgb(17, 1, 1); /* Cambia el color del texto según tus preferencias */
     font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
     text-align: center;
   }
+
+
+
  
 
   .form-cont {
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,16 +105,6 @@ padding: 5px;
     background-size: cover;
     background-position: center;
     height: 100vh;
-    padding: 20px; /* Espacio adicional alrededor del formulario */
-  }
-  
-  .form {
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para el formulario */
-    padding: 40px;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra alrededor del formulario */
-    max-width: 400px; /* Ancho máximo del formulario */
-    width: 100%; /* Ancho completo del contenedor */
-    text-align: center;
+    padding: 1%; /* Espacio adicional alrededor del formulario */
   }
   

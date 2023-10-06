@@ -6,7 +6,7 @@ const {Videogame,Genre} = require ("../db");
 
 const getVideogameControllers = async () => {
     const startPage = 1; // Página inicial
-    const endPage = 10;   // Página final
+    const endPage = 2;   // Página final
     const allDataArray = [];
     for (let page = startPage; page <= endPage; page++) {
         const videogameAPI = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`);

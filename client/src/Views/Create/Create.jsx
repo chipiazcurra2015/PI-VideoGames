@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import "../../Components/Styles/styles.css"
+import { postVideoGame } from '../../Redux/Action/action';
+import { useDispatch,useSelector} from 'react-redux';
 
 const Create = () => {
+  // const allVideoGame = useSelector(state => state.allVideoGame);
+  // const todosLosGeneros = [];
+  // allVideoGame.map((juego) => {
+  //   todosLosGeneros.push(...juego.genres); 
+  // });
 
+  const dispatch = useDispatch();
+     
   const [state, setState] = useState({
     name: "",
     description : "",
@@ -68,6 +77,9 @@ const Create = () => {
       ...state,
       [event.target.name]: event.target.value
     })
+
+
+    
     //RE renderizado
     validate ({
       ...state,
@@ -82,6 +94,11 @@ const Create = () => {
         ...state,
         [event.target.name]:[...state[event.target.name].filter(x => x!== event.target.id )]
       })
+  }
+
+  const handleSubmit = (event) => {
+      event.preventDefault();
+      dispatch(postVideoGame(state))
   }
   
   const buttonDisabled  = ()=> {
@@ -98,7 +115,7 @@ const Create = () => {
 
   return (
     <div>
-      <form className='form-cont'>
+      <form onSubmit={handleSubmit} className='form-cont'>
         <input onChange={handleChange} type="text" name='name' placeholder='Name'/>
         <span>{errors.name}</span>
         <input onChange={handleChange} type="text" name='description' placeholder='Desciption'/>
@@ -114,7 +131,7 @@ const Create = () => {
         </div>
         <div>
           <label> Genres: </label>
-          <select onChange={handleChange} name='genres'> 
+          <select onChange={handleChange} name='genres'>
           {
             genres.map(g=> <option key={g} value={g}>{g}</option>)
           }
