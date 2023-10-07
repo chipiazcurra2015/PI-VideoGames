@@ -1,4 +1,4 @@
-import { GET_VIDEOGAME } from "../Action/action.type";
+import { GET_VIDEOGAME, GET_GENRES } from "../Action/action.type";
 
 
 let initalState = {
@@ -13,6 +13,11 @@ function rootReducer (state= initalState , action){
                 return {
                     ...state,
                     allVideoGame: action.payload
+                }
+            case GET_GENRES:
+                return {
+                    ...state,
+                    allGenres: action.payload
                 }
                 break;
         

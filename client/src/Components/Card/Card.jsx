@@ -14,8 +14,8 @@ const Card = ({name,description,released,platforms,background_image,genres,ratin
       <div className='card-cont-info'>
         <label> Genres: </label>
         <span>{genres}</span>
+        {console.log(genres)}
       </div>
-
     </div>
   )
 }

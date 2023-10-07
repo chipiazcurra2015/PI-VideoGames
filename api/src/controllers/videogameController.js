@@ -30,12 +30,30 @@ const getVideogameControllers = async () => {
 };
 
 
-    const getVideogameDB = async ()=>{
-        //get modelo
-        const getVideoDB = await Videogame.findAll();
-        return getVideoDB;
-    };
+const getVideogameDB = async () => {
+    try {
+      const getVideoDB = await Videogame.findAll({
+        include: {
+          model: Genre,
+        },
+      });
 
+      const gamesWithAPIFormat = getVideoDB.map(g => {
+        return {
+          id: g.id,
+          background_image:g.background_image,
+          name: g.name,
+          description: g.description,
+          genres: g.Genres.map(genre => genre.name),
+        };
+      });
+
+      return gamesWithAPIFormat;
+    } catch (error) {
+      console.error('Error al obtener los videojuegos:', error);
+      throw error;
+    }
+};
     const getALLVideogameController = async(name)=>{
         // trae toda la API tanto de la ---db como de la API y busca por Name
         const videoDB = await getVideogameDB();
@@ -90,7 +108,7 @@ const getVideogameControllers = async () => {
             });
             await newVideoGame.addGenre(genresDB)
         })            
-
+            console.log(genres);
         return newVideoGame;
     };
 

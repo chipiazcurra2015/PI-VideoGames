@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import "../../Components/Styles/styles.css"
-import { postVideoGame } from '../../Redux/Action/action';
+import { postVideoGame, getAllGenres } from '../../Redux/Action/action';
 import { useDispatch,useSelector} from 'react-redux';
+import { useEffect } from 'react';
 
 const Create = () => {
-  // const allVideoGame = useSelector(state => state.allVideoGame);
-  // const todosLosGeneros = [];
-  // allVideoGame.map((juego) => {
-  //   todosLosGeneros.push(...juego.genres); 
-  // });
+  
+  const allGenres = useSelector(state => state.allGenres);
 
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+  dispatch(getAllGenres())
+  
+  }, [])
      
   const [state, setState] = useState({
     name: "",
@@ -21,6 +24,7 @@ const Create = () => {
     genres: [],
     rating: 0.0,
 });
+
   const genres = ["Action","Futbol","Aventura","Disparo","Pelea"]
   const platforms = ["Xbox", "PC", "PlayStation", "Mac"]
   
@@ -133,7 +137,7 @@ const Create = () => {
           <label> Genres: </label>
           <select onChange={handleChange} name='genres'>
           {
-            genres.map(g=> <option key={g} value={g}>{g}</option>)
+            allGenres.map(g=> <option key={g} value={g}>{g}</option>)
           }
           </select>
           {
@@ -144,7 +148,7 @@ const Create = () => {
           <label> Platforms: </label>
           <select onChange={handleChange} name='platforms'> 
           {
-            platforms.map(p=> <option key={p} value={p}>{p}</option>)
+           platforms.map(p=> <option key={p} value={p}>{p}</option>)
           }
           </select>
           {
