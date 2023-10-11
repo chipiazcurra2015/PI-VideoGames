@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom'
 
 const Landing = () => {
   return (
-    <div className='landing-cont'>
-      <Link to="/home">HOME</Link>
+   <div  className='landing-cont'>
+    <div className='landing-cont-img'>
+        <Link className = 'landing-links' to= "/home"><img src="https://logodix.com/logo/380169.png" alt="logo" /></Link>
     </div>
+        <h1>⚽BIENVENIDO⚽</h1>
+   </div> 
   )
 }
 

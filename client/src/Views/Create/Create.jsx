@@ -1,19 +1,27 @@
 import React, { useState } from 'react'
 import "../../Components/Styles/styles.css"
-import { postVideoGame, getAllGenres } from '../../Redux/Action/action';
+import { postVideoGame, getAllGenres, getPlatforms} from '../../Redux/Action/action';
 import { useDispatch,useSelector} from 'react-redux';
 import { useEffect } from 'react';
 
 const Create = () => {
   
   const allGenres = useSelector(state => state.allGenres);
+  let allplatfomrs = useSelector(state => state.allplatfomrs);
+  let uniquePlatforms = allplatfomrs.map(p => p.platforms)
+  let uniquePlatforms2 = uniquePlatforms.flat();
+  let uniquePlatforms3 = [...new Set(uniquePlatforms2)];
 
   const dispatch = useDispatch();
   
   useEffect(() => {
   dispatch(getAllGenres())
-  
   }, [])
+  useEffect(() => {
+  dispatch(getPlatforms())
+  }, [])
+
+
      
   const [state, setState] = useState({
     name: "",
@@ -24,9 +32,6 @@ const Create = () => {
     genres: [],
     rating: 0.0,
 });
-
-  const genres = ["Action","Futbol","Aventura","Disparo","Pelea"]
-  const platforms = ["Xbox", "PC", "PlayStation", "Mac"]
   
   const [errors, setErrors] = useState({
     name: "Tienes que colocarle nombre a tu VideoGame.",
@@ -118,7 +123,7 @@ const Create = () => {
   }
 
   return (
-    <div>
+    <div className='form-count-div'>
       <form onSubmit={handleSubmit} className='form-cont'>
         <input onChange={handleChange} type="text" name='name' placeholder='Name'/>
         <span>{errors.name}</span>
@@ -148,8 +153,9 @@ const Create = () => {
           <label> Platforms: </label>
           <select onChange={handleChange} name='platforms'> 
           {
-           platforms.map(p=> <option key={p} value={p}>{p}</option>)
+           uniquePlatforms3.map(p=> <option key={p} value={p}>{p}</option>)
           }
+          {console.log(uniquePlatforms)}
           </select>
           {
             state.platforms.map((p, index) => (<div key={index}> <span id={"platforms"}>{p}</span> <button type='button' id={p} name='platforms' onClick={remove}>X</button></div>))       

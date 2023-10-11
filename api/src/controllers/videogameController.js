@@ -5,8 +5,8 @@ const axios = require ("axios");
 const {Videogame,Genre} = require ("../db");
 
 const getVideogameControllers = async () => {
-    const startPage = 1; // Página inicial
-    const endPage = 2;   // Página final
+    const startPage = 1; 
+    const endPage = 6;
     const allDataArray = [];
     for (let page = startPage; page <= endPage; page++) {
         const videogameAPI = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`);
@@ -30,6 +30,8 @@ const getVideogameControllers = async () => {
 };
 
 
+
+
 const getVideogameDB = async () => {
     try {
       const getVideoDB = await Videogame.findAll({
@@ -37,7 +39,6 @@ const getVideogameDB = async () => {
           model: Genre,
         },
       });
-
       const gamesWithAPIFormat = getVideoDB.map(g => {
         return {
           id: g.id,
@@ -45,15 +46,19 @@ const getVideogameDB = async () => {
           name: g.name,
           description: g.description,
           genres: g.Genres.map(genre => genre.name),
+          rating: g.rating
         };
       });
-
       return gamesWithAPIFormat;
     } catch (error) {
       console.error('Error al obtener los videojuegos:', error);
       throw error;
     }
 };
+
+
+
+
     const getALLVideogameController = async(name)=>{
         // trae toda la API tanto de la ---db como de la API y busca por Name
         const videoDB = await getVideogameDB();
@@ -67,26 +72,48 @@ const getVideogameDB = async () => {
     };
 
 
+
+
     const getVideoIDController = async (id) => {
         if (isNaN(id)) {
-            const videoID = await Videogame.findByPk(id);
-            return videoID;
-        } else {
-            const videoAPI = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-            const videoData = videoAPI.data;
-                const videoInfo = {
-                id: videoData.id,
-                name: videoData.name,
-                rating: videoData.rating,
-                description: videoData.description,
-                released: videoData.released,
-                genres: videoData.genres ? videoData.genres.map((genre) => genre.name) : ["no tiene Genero"],
-                background_image: videoData.background_image,
-                platforms: videoData.platforms? videoData.platforms.map((platform)=>platform.platform.name):"",
+          const videoID = await Videogame.findByPk(id, {
+            include: Genre,
+          });
+          
+          if (videoID) {
+            const videoInfo = {
+              id: videoID.id,
+              name: videoID.name,
+              rating: videoID.rating,
+              description: videoID.description,
+              released: videoID.released,
+              genres: videoID.Genres.map(genre => genre.name),
+              background_image: videoID.background_image,
+              platforms: videoID.platforms,
             };
             return videoInfo;
+          }
+        } else {
+          const videoAPI = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
+          const videoData = videoAPI.data;
+      
+          const videoInfo = {
+            id: videoData.id,
+            name: videoData.name,
+            rating: videoData.rating,
+            description: videoData.description,
+            released: videoData.released,
+            genres: videoData.genres ? videoData.genres.map(genre => genre.name) : ["no tiene Género"],
+            background_image: videoData.background_image,
+            platforms: videoData.platforms ? videoData.platforms.map(platform => platform.platform.name) : [],
+          };
+          
+          return videoInfo;
         }
-    };
+      };
+
+
+
 
     const createVideoController = async (name,
         description,
@@ -111,8 +138,6 @@ const getVideogameDB = async () => {
             console.log(genres);
         return newVideoGame;
     };
-
-
 
 
 module.exports = {

@@ -17,6 +17,7 @@
 }
 .navbar-links{
     color: blueviolet;
+    font-size: 1.5rem;
 }
 
 
@@ -27,27 +28,28 @@
   width: 250px;
   height: 400px;
   margin: 2rem;
-  background-color: #0d248a;
+  background-color: rgba(0, 0, 255, 0.5);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease-in-out;
+  font-size: 1rem;
 }
 
 .card-cont:hover {
-  transform: scale(1.05); /* Efecto de zoom al pasar el ratón por encima */
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Sombra con luces */
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
 }
 .card-imagen img{
   width: 20rem;
 }
 
 .cards-cont{
-    margin-top: 10rem;
+    margin-top: 15rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 210rem;
+    margin-top: 1rem;
 }
 .card-cont-tittle{
   color: blueviolet;
@@ -59,24 +61,41 @@
 
 
 
-
-
 .home-cont {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-image: url('https://media.vandal.net/i/1280x720/9-2023/20239278512665_1.jpg');
+  margin: 0px;
+  position: relative;
+  overflow: hidden;
+  background-image: url('https://tecnolocura.es/wp-content/uploads/2023/09/eFootball2024_Messi-TECNOLOCURA.jpg'); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la URL de tu imagen de fondo */
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  height: calc(100vh + 100px); /* Añade espacio adicional en la parte inferior */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Mantendrá la imagen de fondo fija */
+  font-size: 1.5rem;
+  
+}
+
+.home-cont button {
+  background-color: rgba(0, 0, 255, 0.5);
+  color: #551857;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.home-cont button:hover {
+  background-color: #0056b3;
 }
 
 
 
 
+
   .landing-cont {
-    background-image: url('https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/07/20/16583311679833.jpg'); /* Reemplaza 'ruta-de-tu-imagen.jpg' con la URL de tu imagen de fondo */
+    background-image: url('https://i.gifer.com/Anx9.gif'); /* Reemplaza 'ruta-de-tu-imagen.jpg' con la URL de tu imagen de fondo */
     background-size: cover; /* Cubre todo el área del elemento */
     background-position: center; /* Centra la imagen en el elemento */
     height: 100vh; /* Establece la altura del elemento al 100% de la altura de la ventana */
@@ -93,18 +112,113 @@
 
 
 
- 
-
-  .form-cont {
-    color: black;
+  .form-count-div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-image: url('https://images7.alphacoders.com/932/932702.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    padding: 1%; /* Espacio adicional alrededor del formulario */
+    margin: 0px;
+    position: initial;
+    overflow: hidden;
+    background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/infobae/ADLUHW425H62AUKSX4D4MQFDC4.jpg'); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la URL de tu imagen de fondo */
+    background-size: 100% 100%; /* Estira la imagen para cubrir todo el fondo sin recortar */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    background-attachment: fixed;
+    font-size: 1.5rem;
   }
   
+  .form-cont {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente para que la imagen de fondo sea visible */
+    padding: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    width: 50%; /* Ajusta el ancho del formulario */
+    transition: font-size 0.3s; /* Agrega una transición suave al tamaño de fuente */
+  }
+  
+  .form-cont form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-cont input[type="text"],
+  .form-cont input[type="number"],
+  .form-cont select {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.5rem;
+  }
+  
+  .form-cont label {
+    font-weight: bold;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .form-cont span {
+    color: red;
+    margin: 0.25rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .form-cont button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .form-cont button:hover {
+    color: red;
+    font-size: 1.5rem;
+  }
+  
+  .form-cont input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 1.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    margin: 1rem 0;
+    cursor: pointer;
+    font-size: 1.5rem;
+    
+  }
+  
+  .form-cont input[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+
+  .detail-content {
+    display: flex;
+    align-items: center;
+    background-image: url('https://th.bing.com/th/id/OIG.i8JFMvGvGkVxABdDPTaK?pid=ImgGn'); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la URL de tu imagen de fondo */
+    background-size: 100% 150%; /* Ajusta el tamaño de la imagen de fondo para que ocupe toda la pantalla */
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+  }
+  
+  .detail-image {
+    padding: 0%;
+    flex: 10%;
+  }
+  
+  .detail-img {
+    max-width: 100%;
+  }
+  
+  .detail-specs {
+    flex: 2;
+    padding: 5rem;
+    color: rgba(26, 5, 26, 0.938);
+    font-size: 1.5rem;
+  }
