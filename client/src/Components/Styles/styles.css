@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(0, 0, 255, 0.5); /* Color azul con transparencia */
+  background-color: rgba(0, 0, 255, 0.5);
   border: solid 2px white;
   box-shadow: 0px 10px 5px white;
 }
@@ -71,11 +71,10 @@
   background-image: url('https://tecnolocura.es/wp-content/uploads/2023/09/eFootball2024_Messi-TECNOLOCURA.jpg'); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la URL de tu imagen de fondo */
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Mantendrá la imagen de fondo fija */
+  background-attachment: fixed;
   font-size: 1.5rem;
   
 }
-
 .home-cont button {
   background-color: rgba(0, 0, 255, 0.5);
   color: #551857;
@@ -86,6 +85,14 @@
   font-size: 1.5rem;
 }
 
+.home-pagination-container {
+  display: flex;
+  align-items: center;
+}
+
+.home-pagination-container label {
+  margin-right: 20px;
+}
 .home-cont button:hover {
   background-color: #0056b3;
 }
@@ -93,22 +100,26 @@
 
 
 
+.landing-cont {
+  background-image: url('https://i.gifer.com/Anx9.gif');
+  background-size: cover; /* Hace que la imagen ocupe toda la pantalla sin repetirse */
+  background-position: center;
+  height: 100vh; 
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(17, 1, 1); 
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
 
-  .landing-cont {
-    background-image: url('https://i.gifer.com/Anx9.gif'); /* Reemplaza 'ruta-de-tu-imagen.jpg' con la URL de tu imagen de fondo */
-    background-size: cover; /* Cubre todo el área del elemento */
-    background-position: center; /* Centra la imagen en el elemento */
-    height: 100vh; /* Establece la altura del elemento al 100% de la altura de la ventana */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: rgb(17, 1, 1); /* Cambia el color del texto según tus preferencias */
-    font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
-    text-align: center;
-  }
+
+
+
+
+
 
 
 
@@ -120,20 +131,19 @@
     position: initial;
     overflow: hidden;
     background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/infobae/ADLUHW425H62AUKSX4D4MQFDC4.jpg'); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la URL de tu imagen de fondo */
-    background-size: 100% 100%; /* Estira la imagen para cubrir todo el fondo sin recortar */
-    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    background-size: 100% 100%; 
     background-attachment: fixed;
     font-size: 1.5rem;
   }
   
   .form-cont {
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente para que la imagen de fondo sea visible */
+    background-color: rgba(0, 0, 0, 0.7); 
     padding: 5rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     color: white;
-    width: 50%; /* Ajusta el ancho del formulario */
-    transition: font-size 0.3s; /* Agrega una transición suave al tamaño de fuente */
+    width: 50%; 
+    transition: font-size 0.3s; 
   }
   
   .form-cont form {
@@ -201,8 +211,8 @@
   .detail-content {
     display: flex;
     align-items: center;
-    background-image: url('https://th.bing.com/th/id/OIG.i8JFMvGvGkVxABdDPTaK?pid=ImgGn'); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la URL de tu imagen de fondo */
-    background-size: 100% 150%; /* Ajusta el tamaño de la imagen de fondo para que ocupe toda la pantalla */
+    background-image: url('https://th.bing.com/th/id/OIG.i8JFMvGvGkVxABdDPTaK?pid=ImgGn');
+    background-size: 100% 150%; 
     background-repeat: no-repeat;
     background-attachment: fixed; 
   }

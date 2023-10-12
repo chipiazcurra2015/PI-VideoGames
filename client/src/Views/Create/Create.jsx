@@ -127,7 +127,7 @@ const Create = () => {
       <form onSubmit={handleSubmit} className='form-cont'>
         <input onChange={handleChange} type="text" name='name' placeholder='Name'/>
         <span>{errors.name}</span>
-        <input onChange={handleChange} type="text" name='description' placeholder='Desciption'/>
+        <input onChange={handleChange} type="text" name='description' placeholder='Description'/>
         <span>{errors.description}</span>
         <div>
         <label> Released: </label>
@@ -146,7 +146,7 @@ const Create = () => {
           }
           </select>
           {
-             state.genres.map((p, index) => (<div key={index}><span id={"genres"}>{p}</span><button type='button' id={p} name='genres' onClick={remove}>X</button></div>))       
+             state.genres.map((p, index) => (<div key={index}> <span id={"genres"}>{p}</span> <button type='button' id={p} name='genres' onClick={remove}>X</button></div>))       
             }
         </div> <span>{errors.genres}</span>
         <div>
@@ -155,7 +155,6 @@ const Create = () => {
           {
            uniquePlatforms3.map(p=> <option key={p} value={p}>{p}</option>)
           }
-          {console.log(uniquePlatforms)}
           </select>
           {
             state.platforms.map((p, index) => (<div key={index}> <span id={"platforms"}>{p}</span> <button type='button' id={p} name='platforms' onClick={remove}>X</button></div>))       

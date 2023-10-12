@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_VIDEOGAME, GET_GENRES,GET_PLATFORMS,PAGINATE,FILTERS , GET_ID} from './action.type';
+import { GET_VIDEOGAME, GET_GENRES,GET_PLATFORMS,PAGINATE,FILTERS
+    , GET_ID, RESET,FILTER_BY_GENRES,SEARCH_BY_NAME} from './action.type';
 
 
 
@@ -83,3 +84,35 @@ export function VideoGameFilters (order){
           }
         };
       }
+
+      export function resetVideo (order){
+        return function (dispatch){
+               dispatch({
+                    type:RESET,
+                    payload:order
+               })
+            }
+        }
+
+        export function filterByGenres (order){
+            return async function (dispatch){
+                try {
+                   dispatch({
+                        type:FILTER_BY_GENRES,
+                        payload: order
+                   })
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+
+        
+        export function searchByName (searchTerm){
+            return async function (dispatch){
+               dispatch({
+                       type: SEARCH_BY_NAME,
+                        payload: searchTerm,
+                      })
+  }
+}

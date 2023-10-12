@@ -1,4 +1,5 @@
-import { GET_VIDEOGAME, GET_GENRES,GET_PLATFORMS, PAGINATE,FILTERS,GET_ID} from "../Action/action.type";
+import { GET_VIDEOGAME, GET_GENRES,GET_PLATFORMS, PAGINATE,FILTERS,GET_ID,
+     RESET, FILTER_BY_GENRES, SEARCH_BY_NAME} from "../Action/action.type";
 
 
 let initialState = {
@@ -11,6 +12,8 @@ let initialState = {
     filter: false,
     allVideoGameBackUp: [],
     currentPage: 0,
+    currentPageNumber: 1,
+    searchTerm: '',
 }
 
 
@@ -25,7 +28,8 @@ function rootReducer (state= initialState , action){
             case GET_GENRES:
                 return {
                     ...state,
-                    allGenres: action.payload
+                    allGenres: action.payload,
+                    allVideoGameBackUp: action.payload
                 }
                 case GET_ID:
                     return {
@@ -37,34 +41,59 @@ function rootReducer (state= initialState , action){
                     ...state,
                     allplatfomrs: action.payload
                 }
-            case PAGINATE:
-                const next_page = state.currentPage  + 1;
-                const prev_page = state.currentPage  - 1;
-                const FirstIndex = action.payload === "next"? next_page * 15 : prev_page * 15 ;
+                case SEARCH_BY_NAME:
+                    const searchTerm = action.payload.toLowerCase();
+                    const filteredByName = state.allVideoGameBackUp.filter((game) => game.name.toLowerCase().includes(searchTerm));
+                    return {
+                      ...state,
+                      allVideoGame: [...filteredByName].splice(0, 15),
+                      currentPage: 0,
+                      filter: true,
+                      videoFiltered: filteredByName,
+                      searchTerm,
+                      currentPageNumber: 1,
+                    }
+            case RESET: 
+            return{
+                ...state,
+                allVideoGame:[...state.allVideoGameBackUp].splice(0,15),
+                currentPage:0,
+                filter: false,
+                videoFiltered: [],
+                videoFiltered5: [],
+                currentPageNumber: 1,
+
+            }
+                case PAGINATE:
+                    const next_page = state.currentPage + 1;
+                    const prev_page = state.currentPage - 1;
+                    const FirstIndex = action.payload === "next" ? next_page * 15 : prev_page * 15;
                 
-
-
-                if(state.filter){        
-                if(action.payload === "next" && FirstIndex >= state.videoFiltered.length) return state;
-                else if (action.payload === "prev" && prev_page < 0) return state
-                if(action.payload === "next" && FirstIndex >= state.videoFiltered5.length) return state;
-                else if (action.payload === "prev" && prev_page < 0) return state
+                    if (state.filter) {
+                        if (action.payload === "next" && FirstIndex >= state.videoFiltered.length) return state;
+                        else if (action.payload === "prev" && prev_page < 0) return state;
+                        return {
+                            ...state,
+                            allVideoGame: [...state.videoFiltered].splice(FirstIndex, 15),
+                            currentPage: action.payload === "next" ? next_page : prev_page,
+                            currentPageNumber: action.payload === "next" ? state.currentPageNumber + 1 : state.currentPageNumber - 1
+                        };
+                    }
+                
+                    if (action.payload === "next" && FirstIndex >= state.allVideoGameBackUp.length) return state;
+                    else if (action.payload === "prev" && prev_page < 0) return state;
+                
                     return {
                         ...state,
-                        allVideoGame: [...state.videoFiltered].splice(FirstIndex, 15),
-                        currentPage: action.payload === "next"? next_page :prev_page
-                    }
-                }
-                
-                if(action.payload === "next" && FirstIndex >= state.allVideoGameBackUp.length) return state;
-                else if (action.payload === "prev" && prev_page < 0) return state
-
-              return {
-                ...state,
-                allVideoGame: [...state.allVideoGameBackUp].splice(FirstIndex, 15),
-                currentPage: action.payload === "next"? next_page :prev_page
-            }
-
+                        allVideoGame: [...state.allVideoGameBackUp].splice(FirstIndex, 15),
+                        currentPage: action.payload === "next" ? next_page : prev_page,
+                        currentPageNumber: action.payload === "next" ? state.currentPageNumber + 1 : state.currentPageNumber - 1
+                    };
+            case FILTER_BY_GENRES:
+                 return {
+                      ...state,
+                      allVideoGame:[...state.allVideoGameBackUp].filter(g=> g.genres.includes(action.payload)).splice(0,15),
+                        }
 
             case FILTERS:
                switch (action.payload) {
@@ -78,7 +107,8 @@ function rootReducer (state= initialState , action){
                         ...state,
                         allVideoGame:[...ase].splice(0,15),
                         allVideoGameBackUp: ase,
-                        currentPage: 0
+                        currentPage: 0,
+                        currentPageNumber: 1,
                     } 
 
                 case "ZA" :
@@ -91,7 +121,8 @@ function rootReducer (state= initialState , action){
                         ...state,
                         allVideoGame:[...des].splice(0,15),
                         allVideoGameBackUp: des,
-                        currentPage: 0
+                        currentPage: 0,
+                        currentPageNumber: 1,
                     } 
              
                 case "Rating":
@@ -101,7 +132,8 @@ function rootReducer (state= initialState , action){
                         allVideoGame:[...rating].splice(0,15),
                         videoFiltered: rating,
                         currentPage: 0,
-                        filter: true
+                        filter: true,
+                        currentPageNumber: 1,
                     } 
                 case "Rating5":
                     let rating5 = [...state.allVideoGameBackUp].filter((v)=> v.rating > 4)
@@ -110,7 +142,8 @@ function rootReducer (state= initialState , action){
                         allVideoGame:[...rating5].splice(0,15),
                         videoFiltered5: rating5,
                         currentPage: 0,
-                        filter: true
+                        filter: true,
+                        currentPageNumber: 1,
                     } 
                         
                     default: return state
