@@ -47,6 +47,8 @@ const Create = () => {
   if (name === "name") {
     if (state.name === "")  setErrors({ ...errors, name: "Tienes que colocarle nombre a tu VideoGame." });
      else if(state.name.length >= 25) setErrors({ ...errors, name: "Nombre demasiado largo." });
+     else if(state.name === name ) setErrors({ ...errors, name: "Este juego ya existe, prueba con otro nombre." });
+     else if(state.name.length <= 2) setErrors({ ...errors, name: "Nombre demasiado corto." });
      else if(!/^[a-zA-Z0-9\sñÑ.,]+$/.test(state.name)) setErrors({ ...errors, name: "El nombre no puede contener símbolos." });
      else setErrors({ ...errors, name: "" });
   }
@@ -131,7 +133,7 @@ const Create = () => {
         <span>{errors.description}</span>
         <div>
         <label> Released: </label>
-        <input onChange={handleChange} type="date" name='released' placeholder='Released' />
+        <input className='form-released' onChange={handleChange} type="date" name='released' placeholder='Released' />
         </div>
         <div>
         <label>Rating: </label>

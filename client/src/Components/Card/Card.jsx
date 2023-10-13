@@ -18,7 +18,7 @@ const Card = ({name,description,released,platforms,background_image,genres,ratin
       </div>
       <div>
         <label> Rating: </label>
-        <span>{rating}</span>
+        <span>⭐{rating}⭐</span>
       </div>
     </div>
   )

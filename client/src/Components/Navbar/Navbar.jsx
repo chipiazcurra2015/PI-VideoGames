@@ -14,10 +14,10 @@ const Navbar = () => {
       <div className='navbar-cont-img'>
         <Link className = 'navbar-links' to= "/"><img src="https://logodix.com/logo/380169.png" alt="logo" /></Link>
       </div>
-      <div className='navbar-cont-links'>
-        <Link className = 'navbar-links' to= "/home">Home</Link>
-        <Link className = 'navbar-links' to= "/create">Formulario</Link>
+      <div>
+        <Link className = 'navbar-links-2' to= "/home">HOME</Link>
       </div>
+        <Link className = 'navbar-links-2' to= "/create">CREATE VIDEOGAME</Link>
       <div className='navbar-cont-search'>
       <input type="text" placeholder="Buscar por nombre" value={searchTerm} onChange={(e) => dispatch(searchByName(e.target.value))}/>
       <button onClick={() => dispatch(searchByName(searchTerm))}>Buscar</button>

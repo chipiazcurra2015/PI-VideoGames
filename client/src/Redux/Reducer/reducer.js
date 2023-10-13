@@ -14,6 +14,7 @@ let initialState = {
     currentPage: 0,
     currentPageNumber: 1,
     searchTerm: '',
+    filterType: 'all'
 }
 
 
@@ -126,7 +127,12 @@ function rootReducer (state= initialState , action){
                     } 
              
                 case "Rating":
-                    let rating = [...state.allVideoGameBackUp].filter((v)=> v.rating < 4)
+                    let rating = [...state.allVideoGameBackUp].sort((prev,next)=>{
+                        if(prev.rating > next.rating) return -1 
+                        if(prev.rating < next.rating) return  1
+                        return 0 
+                    })
+
                     return{
                         ...state,
                         allVideoGame:[...rating].splice(0,15),
@@ -136,7 +142,11 @@ function rootReducer (state= initialState , action){
                         currentPageNumber: 1,
                     } 
                 case "Rating5":
-                    let rating5 = [...state.allVideoGameBackUp].filter((v)=> v.rating > 4)
+                    let rating5 = [...state.allVideoGameBackUp].sort((prev,next)=>{
+                        if(prev.rating > next.rating) return   1 
+                        if(prev.rating < next.rating) return  -1
+                        return 0 
+                    })
                     return{
                         ...state,
                         allVideoGame:[...rating5].splice(0,15),
@@ -145,6 +155,7 @@ function rootReducer (state= initialState , action){
                         filter: true,
                         currentPageNumber: 1,
                     } 
+
                         
                     default: return state
                 break;
