@@ -14,18 +14,23 @@ let initialState = {
     currentPage: 0,
     currentPageNumber: 1,
     searchTerm: '',
-    filterType: 'all'
+    filterType: 'all',
+ 
 }
 
 
 function rootReducer (state= initialState , action){
     switch (action.type) {
-        case GET_VIDEOGAME:
+             case GET_VIDEOGAME:
+                    const videoGamesWithAPI = action.payload.map(videoGame => ({
+                    ...videoGame,
+                    isFromAPI: !isNaN(videoGame.id),
+                        }));
                 return {
-                    ...state,
-                    allVideoGame: [...action.payload].splice(0,15),
-                    allVideoGameBackUp: action.payload
-                }
+                   ...state,
+                   allVideoGame: [...videoGamesWithAPI].splice(0, 15),
+                   allVideoGameBackUp: videoGamesWithAPI,
+                       };
             case GET_GENRES:
                 return {
                     ...state,
@@ -110,6 +115,7 @@ function rootReducer (state= initialState , action){
                         allVideoGameBackUp: ase,
                         currentPage: 0,
                         currentPageNumber: 1,
+                        filterType: state.filterType, 
                     } 
 
                 case "ZA" :
@@ -124,6 +130,7 @@ function rootReducer (state= initialState , action){
                         allVideoGameBackUp: des,
                         currentPage: 0,
                         currentPageNumber: 1,
+                        filterType: state.filterType, 
                     } 
              
                 case "Rating":
@@ -140,6 +147,7 @@ function rootReducer (state= initialState , action){
                         currentPage: 0,
                         filter: true,
                         currentPageNumber: 1,
+                        filterType: state.filterType, 
                     } 
                 case "Rating5":
                     let rating5 = [...state.allVideoGameBackUp].sort((prev,next)=>{
@@ -154,8 +162,29 @@ function rootReducer (state= initialState , action){
                         currentPage: 0,
                         filter: true,
                         currentPageNumber: 1,
+                        filterType: state.filterType, 
                     } 
-
+                    case "API":
+                        const apiFiltered = state.allVideoGameBackUp.filter(videoGame => videoGame.isFromAPI);
+                        return {
+                            ...state,
+                            allVideoGame: [...apiFiltered].splice(0, 15),
+                            filterType: 'API',
+                            currentPage: 0,
+                            filter: true,
+                            currentPageNumber: 1,
+                        };
+                    case "DataBase":
+                        const dbFiltered = state.allVideoGameBackUp.filter(videoGame => !videoGame.isFromAPI);
+                        return {
+                            ...state,
+                            allVideoGame: [...dbFiltered].splice(0, 15),
+                            filterType: 'DataBase',
+                            currentPage: 0,
+                            filter: true,
+                            currentPageNumber: 1,
+                        };
+                
                         
                     default: return state
                 break;

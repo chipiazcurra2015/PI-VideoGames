@@ -35,6 +35,7 @@ const Home = React.memo(() => {
     }
 
 
+    {console.log();}
   return (
     <div className='home-cont'>
       <div>
@@ -46,6 +47,8 @@ const Home = React.memo(() => {
          <button name='ZA' onClick={filters}>Z-A</button>
          <button name='Rating' onClick={filters}>{"Rating-max"}</button>
          <button name='Rating5' onClick={filters}>{"Rating-min"}</button>
+         <button name='API' onClick={filters}>{"API"}</button>
+         <button name='DataBase' onClick={filters}>{"DataBase"}</button>
         <label >Select a Genre: </label>
           <select  className='home-genre' onClick={filtered} name="filter" id="">
             {
@@ -65,6 +68,13 @@ const Home = React.memo(() => {
        <div>
          <Cards info={allVideoGame}> </Cards>
        </div>
+        <div className='home-pagination-container'>
+        <button name='prev' onClick={pagination}>⏪⏪</button>
+        <div className='page-number-container'>
+            <p className='page-number'>{currentPageNumber}</p>
+        </div>
+        <button name='next' onClick={pagination}>⏩⏩</button>
+        </div>
     </div>
   )
 }
