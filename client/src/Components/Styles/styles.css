@@ -1,13 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 .navbar-cont {
+  border: 2px outset rgba(189,80,255,0.54);;
+  padding: 1px;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(0, 0, 255, 0.5);
-  border: solid 2px white;
-  box-shadow: 0px 10px 5px white;
-  border: 10px outset rgba(189,80,255,0.54);
 }
 
 .navbar-cont-img img{
@@ -16,46 +15,35 @@
 .navbar-cont-links{
    display: flex;
    justify-content: space-between;
-   width: 15rem; 
+   width: 10rem; 
 }
 .navbar-links{
     color: blueviolet;
     font-size: 2rem;
 }
 .navbar-links-2{
+  color: #ccc;
   font-family: 'Orbitron', sans-serif;
-  font-size: 2rem;
-  border: 10px outset #bd50ff;
+  font-size: 1.3rem;
 }
 .navbar-cont-search {
-  border: 2px solid rgba(189, 80, 255, 0.54);
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 10px;
-  font-size: 1.5rem;
-  transition: background-color 1s linear;
-  background-color: rgba(91, 14, 139, 0.1);
+  font-size: 1rem;
+  background-color: rgba(121, 117, 117, 0);
   color: #555;
 }
 .navbar-cont-search button {
   font-family: 'Orbitron', sans-serif;
-  border: 2px solid rgba(189, 80, 255, 0.54);
   padding: 10px 20px;
   font-size: 1.2rem; 
 }
 
-.navbar-cont-search button:focus {
-  background-color: rgba(189, 80, 255, 0.8);
-  color: #fff;
-}
 .navbar-cont-search input {
-  border: 2px solid rgba(189, 80, 255, 0.54);
+  background-color: rgba(121, 117, 117, 0);
+  border: 1px solid white;
   padding: 10px 20px;
   font-size: 1.2rem; 
-}
-
-.navbar-cont-search input:focus {
-  background-color: rgba(189, 80, 255, 0.8);
-  color: #fff;
 }
 
 
@@ -69,6 +57,7 @@
 
 
 .card-cont {
+  color: #ccc;
   width: 250px;
   height: 400px;
   margin: 2rem;
@@ -78,7 +67,7 @@
   position: relative;
   transition: transform 0.3s ease-in-out;
   font-size: 1rem;
-  border: 10px outset rgba(189,80,255,0.54);
+  border: 5px outset rgba(189,80,255,0.54);
 }
 
 .card-cont:hover {
@@ -86,19 +75,23 @@
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
 }
 .card-imagen img{
-  width: 20rem;
+  width: 15rem;
 }
 
 .cards-cont{
-  font-family: 'Orbitron', sans-serif;
-    margin-top: 15rem;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 5rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 1rem;
 }
 .card-cont-tittle{
-  color: blueviolet;
+  color: white
+}
+.name{
+  color: #ccc;
 }
 
 
@@ -108,13 +101,16 @@
 
 
 .home-cont {
+  color: #ccc;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  color: #ccc;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0px;
   position: relative;
   overflow: hidden;
-  background-image: url('https://tecnolocura.es/wp-content/uploads/2023/09/eFootball2024_Messi-TECNOLOCURA.jpg'); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la URL de tu imagen de fondo */
+  background-image: url('https://tecnolocura.es/wp-content/uploads/2023/09/eFootball2024_Messi-TECNOLOCURA.jpg'); 
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -122,24 +118,26 @@
   min-height: 100vh;
   
 }
+
 .home-cont button {
+  color: #ccc;
   font-family: 'Orbitron', sans-serif;
   background-color: rgba(0, 0, 255, 0.5);
-  color: #551857;
   border: none;
   padding: 10px 20px;
-  margin: 0 5px;
+  margin: 1rem .5rem;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .home-pagination-container {
+  color: #ccc;
   display: flex;
   align-items: center;
 }
 
-
 .home-pagination-container label {
+  color: #ccc;
   margin-right: 20px;
 }
 .home-cont button:hover {
@@ -147,6 +145,7 @@
 
 }
 .page-number-container {
+  color: #ccc;
   border: 2px solid #d10dc7; 
   border-radius: 50px;
   padding: 0px 6px; 
@@ -158,7 +157,7 @@
 }
 .home-genre{
   background-color: rgba(0, 0, 255, 0.5);
-  color: #551857;
+  color: #ccc;
   border: none;
   padding: 10px 20px;
   margin: 0 5px;
@@ -293,18 +292,20 @@
 
 
   .detail-content {
+    margin-top: 0;
     display: flex;
     align-items: center;
-    background-image: url('https://th.bing.com/th/id/OIG.mKW48nAoDGs.SWr7Mt8r?pid=ImgGn');
-    background-size: 100% 150%; 
+    background-image: url('../../img/imagen.jpg');
+    background-color: rgb(0 0 0 / 70%);
+    background-size: 100% 130%; 
     background-repeat: no-repeat;
-    background-attachment: fixed; 
+    position: absolute;
   }
-  
+ 
   .detail-image {
-    border: 10px outset rgba(189,80,255,0.54);
+    border: 5px outset rgba(189,80,255,0.54);
     padding: 0%;
-    flex: 10%;
+    flex: 5%;
   }
   
   .detail-img {
@@ -314,9 +315,9 @@
   .detail-specs {
     font-family: 'Orbitron', sans-serif;
     flex: 2;
-    padding: 5rem;
-    color: rgba(120, 14, 129, 0.938);
-    font-size: 1.9rem;
+    padding: 2rem;
+    color: white;
+    font-size: 1.3rem;
     text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
   }
   .detail-links-volver {

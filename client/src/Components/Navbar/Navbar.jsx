@@ -18,7 +18,7 @@ const Navbar = () => {
       </div>
         <Link className = 'navbar-links-2' to= "/create">CREATE VIDEOGAME</Link>
       <div className='navbar-cont-search'>
-      <input type="text" placeholder="Buscar tu GAME por nombre" value={searchTerm} onChange={(e) => dispatch(searchByName(e.target.value))}/>
+      <input type="text" placeholder="Search your game" value={searchTerm} onChange={(e) => dispatch(searchByName(e.target.value))}/>
       <button onClick={() => dispatch(searchByName(searchTerm))}>Buscar</button>
       </div>
     </div>

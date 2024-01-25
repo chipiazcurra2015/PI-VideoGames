@@ -49,6 +49,7 @@ const Home = React.memo(() => {
          <button name='Rating5' onClick={filters}>{"Rating-min"}</button>
          <button name='API' onClick={filters}>{"API"}</button>
          <button name='DataBase' onClick={filters}>{"DataBase"}</button>
+         <button name='all' onClick={filters}>{"All"}</button>
         <label >Select a Genre: </label>
           <select  className='home-genre' onClick={filtered} name="filter" id="">
             {

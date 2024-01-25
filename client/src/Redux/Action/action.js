@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_VIDEOGAME, GET_GENRES,GET_PLATFORMS,PAGINATE,FILTERS
-    , GET_ID, RESET,FILTER_BY_GENRES,SEARCH_BY_NAME} from './action.type';
+    , GET_ID, RESET,FILTER_BY_GENRES,SEARCH_BY_NAME, SET_FILTER_TYPE} from './action.type';
 
 
 
@@ -116,3 +116,10 @@ export function VideoGameFilters (order){
                       })
   }
 }
+        
+export const setFilterType = (filterType) => {
+    return {
+      type: SET_FILTER_TYPE,
+      payload: filterType,
+    };
+  };

@@ -9,7 +9,7 @@ const Card = ({name,description,released,platforms,background_image,genres,ratin
         <img src={background_image} alt="Game" />
       </div>
       <div className='card-cont-tittle'>
-        <Link to={`/detail/${id}`} ><h2>{name}</h2></Link>
+        <Link to={`/detail/${id}`} ><h2 className='name'>{name}</h2></Link>
       </div>
         <br />
       <div className='card-cont-info'>

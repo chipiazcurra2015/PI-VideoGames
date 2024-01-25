@@ -1,22 +1,22 @@
 import { GET_VIDEOGAME, GET_GENRES,GET_PLATFORMS, PAGINATE,FILTERS,GET_ID,
-     RESET, FILTER_BY_GENRES, SEARCH_BY_NAME} from "../Action/action.type";
+     RESET, FILTER_BY_GENRES, SEARCH_BY_NAME, SET_FILTER_TYPE} from "../Action/action.type";
 
 
-let initialState = {
-    allVideoGame : [],
-    allGenres: [],
-    allVideoID: {},
-    allplatfomrs: [],
-    videoFiltered: [],
-    videoFiltered5: [],
-    filter: false,
-    allVideoGameBackUp: [],
-    currentPage: 0,
-    currentPageNumber: 1,
-    searchTerm: '',
-    filterType: 'all',
- 
-}
+     let initialState = {
+        allVideoGame: [],
+        allGenres: [],
+        allVideoID: {},
+        allplatfomrs: [],
+        allVideoGameBackUp: [],
+        currentPage: 0,
+        currentPageNumber: 1,
+        searchTerm: '',
+        filters: {
+            filterType: 'all',
+            sortOrder: 'AZ',
+            selectedGenre: null,
+        },
+    };
 
 
 function rootReducer (state= initialState , action){
@@ -30,18 +30,24 @@ function rootReducer (state= initialState , action){
                    ...state,
                    allVideoGame: [...videoGamesWithAPI].splice(0, 15),
                    allVideoGameBackUp: videoGamesWithAPI,
-                       };
+                       }; 
+
+
             case GET_GENRES:
                 return {
                     ...state,
                     allGenres: action.payload,
                     allVideoGameBackUp: action.payload
                 }
+
+
                 case GET_ID:
                     return {
                         ...state,
                         allVideoID: action.payload
                     }
+
+
             case GET_PLATFORMS:
                 return {
                     ...state,
@@ -59,6 +65,15 @@ function rootReducer (state= initialState , action){
                       searchTerm,
                       currentPageNumber: 1,
                     }
+                    case SET_FILTER_TYPE:
+                        return {
+                          ...state,
+                          filters: {
+                            ...state.filters,
+                            filterType: action.payload, // Actualiza la fuente de búsqueda
+                          },
+                        };        
+
             case RESET: 
             return{
                 ...state,
@@ -95,43 +110,61 @@ function rootReducer (state= initialState , action){
                         currentPage: action.payload === "next" ? next_page : prev_page,
                         currentPageNumber: action.payload === "next" ? state.currentPageNumber + 1 : state.currentPageNumber - 1
                     };
-            case FILTER_BY_GENRES:
-                 return {
+                    case FILTER_BY_GENRES:
+                    const selectedGenre = action.payload;
+                    const selectedSource = state.filters.filterType;
+
+                    let filteredGames = state.allVideoGameBackUp.filter(game => {
+                      if (selectedSource === 'API') {
+                        return game.genres.includes(selectedGenre) && game.isFromAPI;
+                      } else if (selectedSource === 'DataBase') {
+                         return game.genres.includes(selectedGenre) && !game.isFromAPI;
+                      } else if (selectedSource === 'all') {
+                        return game.genres.includes(selectedGenre);
+                      }
+                    });
+
+                    return {
                       ...state,
-                      allVideoGame:[...state.allVideoGameBackUp].filter(g=> g.genres.includes(action.payload)).splice(0,15),
-                        }
-
+                      allVideoGame: filteredGames.slice(0, 15),
+                      currentPage: 0,
+                      filter: true,
+                      videoFiltered: filteredGames,
+                      searchTerm: '',
+                      currentPageNumber: 1,
+                    };
+                    
             case FILTERS:
-               switch (action.payload) {
-                case "AZ" :
-                    let ase = [...state.allVideoGameBackUp].sort((prev,next)=>{
-                        if(prev.name.toLowerCase()>next.name.toLowerCase()) return 1 
-                        if(prev.name.toLowerCase()<next.name.toLowerCase()) return -1
-                        return 0 
-                    })
-                    return{
-                        ...state,
-                        allVideoGame:[...ase].splice(0,15),
-                        allVideoGameBackUp: ase,
-                        currentPage: 0,
-                        currentPageNumber: 1,
-                        filterType: state.filterType, 
-                    } 
-
-                case "ZA" :
-                    let des = [...state.allVideoGameBackUp].sort((prev,next)=>{
-                        if(prev.name.toLowerCase()>next.name.toLowerCase()) return -1 
-                        if(prev.name.toLowerCase()<next.name.toLowerCase()) return  1
-                        return 0 
-                    })
-                    return{
-                        ...state,
-                        allVideoGame:[...des].splice(0,15),
-                        allVideoGameBackUp: des,
-                        currentPage: 0,
-                        currentPageNumber: 1,
-                        filterType: state.filterType, 
-                    } 
+                switch (action.payload) {
+                    case "AZ":
+                        let ase = [...state.allVideoGame].sort((prev, next) => {
+                            if (prev.name.toLowerCase() > next.name.toLowerCase()) return 1;
+                            if (prev.name.toLowerCase() < next.name.toLowerCase()) return -1;
+                            return 0;
+                        });
+                        return {
+                            ...state,
+                            allVideoGame: [...ase].splice(0, 15),
+                            allVideoGameBackUp: ase,
+                            currentPage: 0,
+                            currentPageNumber: 1,
+                            filterType: state.filterType,
+                        };
+            
+                    case "ZA":
+                        let des = [...state.allVideoGame].sort((prev, next) => {
+                            if (prev.name.toLowerCase() > next.name.toLowerCase()) return -1;
+                            if (prev.name.toLowerCase() < next.name.toLowerCase()) return 1;
+                            return 0;
+                        });
+                        return {
+                            ...state,
+                            allVideoGame: [...des].splice(0, 15),
+                            allVideoGameBackUp: des,
+                            currentPage: 0,
+                            currentPageNumber: 1,
+                            filterType: state.filterType,
+                        };
              
                 case "Rating":
                     let rating = [...state.allVideoGameBackUp].sort((prev,next)=>{
@@ -173,9 +206,10 @@ function rootReducer (state= initialState , action){
                             currentPage: 0,
                             filter: true,
                             currentPageNumber: 1,
+                            filterType: state.filterType, 
                         };
                     case "DataBase":
-                        const dbFiltered = state.allVideoGameBackUp.filter(videoGame => !videoGame.isFromAPI);
+                        const dbFiltered = state.allVideoGameBackUp.filter( videoGame => !videoGame.isFromAPI);
                         return {
                             ...state,
                             allVideoGame: [...dbFiltered].splice(0, 15),
@@ -183,9 +217,21 @@ function rootReducer (state= initialState , action){
                             currentPage: 0,
                             filter: true,
                             currentPageNumber: 1,
+                            filterType: state.filterType, 
                         };
-                
+                    case "all":
+                        const all  = [...state.allVideoGameBackUp].splice(0,15)
+                        return {
+                            ...state,
+                            allVideoGame: [...all].splice(0, 15),
+                            filterType: 'all',
+                            currentPage: 0,
+                            filter: true,
+                            currentPageNumber: 1,
+                            filterType: state.filterType, 
+                        };
                         
+                
                     default: return state
                 break;
                }

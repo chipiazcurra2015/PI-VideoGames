@@ -24,7 +24,7 @@ const Detail = () => {
           <h1>🎮{allVideoID.name}🎮</h1>
           <hr />
           <label>Description: </label>
-          <p>{allVideoID.description}</p>
+          {allVideoID.description}
           <hr />
           <label>Released:</label>
           <p>{allVideoID.released}</p>
