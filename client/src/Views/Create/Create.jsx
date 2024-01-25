@@ -142,7 +142,7 @@ const Create = () => {
         </div>
         <div>
           <label> Genres: </label>
-          <select onChange={handleChange} name='genres'>
+          <select className='selector' onChange={handleChange} name='genres'>
           {
             allGenres.map(g=> <option key={g} value={g}>{g}</option>)
           }
@@ -153,7 +153,7 @@ const Create = () => {
         </div> <span>{errors.genres}</span>
         <div>
           <label> Platforms: </label>
-          <select onChange={handleChange} name='platforms'> 
+          <select className='selector' onChange={handleChange} name='platforms'> 
           {
            uniquePlatforms3.map(p=> <option key={p} value={p}>{p}</option>)
           }
